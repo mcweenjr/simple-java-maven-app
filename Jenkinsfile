@@ -32,7 +32,7 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 script {
-                  sh 'docker pull mcweenjr/simple-java-maven-app:${env.BUILD_NUMBER}'
+                  sh 'docker pull mcweenjr/simple-java-maven-app'
                         try {
                             sh 'docker stop mcweenjr/simple-java-maven-app'
                             sh 'docker rm mcweenjr/simple-java-maven-app'
