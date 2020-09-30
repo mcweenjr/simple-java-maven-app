@@ -39,7 +39,7 @@ pipeline {
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh 'docker run -p 8280:8080 -p 9990:9990 -it mcweenjr/simple-java-maven-app /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0'
+                        sh 'docker run -p 8280:8080 -p 9990:9990 mcweenjr/simple-java-maven-app /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0'
                     }
                 }
             }
