@@ -27,5 +27,21 @@ pipeline {
                 }
             }
         }
-     }
+        stage('DeployToProduction') {
+            steps {
+                input 'Deploy to Production?'
+                milestone(1)
+                script {
+                  sh 'docker pull mcweenjr/simple-java-maven-app:${env.BUILD_NUMBER}'
+                        try {
+                            sh 'docker stop mcweenjr/simple-java-maven-app'
+                            sh 'docker rm mcweenjr/simple-java-maven-app'
+                        } catch (err) {
+                            echo: 'caught error: $err'
+                        }
+                        sh 'docker run -p 8280:8080 -p 9990:9990 -it mcweenjr/simple-java-maven-app:${env.BUILD_NUMBER} /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0'
+                    }
+                }
+            }
+        }
 }
