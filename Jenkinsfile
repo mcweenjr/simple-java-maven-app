@@ -8,7 +8,7 @@ pipeline {
             }
         }
     }
-}
+
 
         stage('Build Docker Image') {
             when {
@@ -23,3 +23,4 @@ pipeline {
                 }
             }
         }
+}
